@@ -1,14 +1,16 @@
 #Talatat
 
-An exploratory API for the ConcertTalent.com website, which is presently being refactored as one of two potential frontend clients: Stradivarius (a Django client) or Guarnerius (an Angular client).
+An exploratory API for the ConcertTalent.com website, which is presently being refactored as one of two potential frontend clients: Stradivarius (a Django client) or Guarnerius (an Angular client). This API is for experimenting with API calls only and not intended for production use.
+
 
 ###ABOUT TALATAT
 
 Name for small blocks of sandstone used to construct Akhenaten's Aten temples and palaces in ancient Egypt. Due to their handy and uniform size, they expedited building things and structures that used them were often later dismantled and the blocks were reused in other constructions. The origin of the term talatat is supposedly originates with the Arabic word for "three", insomuch as the dimension of a talatat was three palm-widths.
 
+
 ###TECHNOLOGY STACK
 
-Talatat is built on Pyramid (a Python framework)--and ultimately installed on an AWS EC2 server (Linux Ubuntu 14.04 LTS) associated with an Elastic IP. (The Concert Talent API may ultimtely be refactored as an Eve app or as a Sandman app.)
+Talatat is built on Pyramid (a Python framework)--and is easily installed on an AWS EC2 server (Linux Ubuntu 14.04 LTS) associated with an Elastic IP, or any cloud service provider you choose. The Concert Talent API will likely be refactored as an Eve app or as a Sandman app. But, if you're looking for an example of a lightweight API running on a relatively fast and agnostic Python framework, this might be a good place to start. (Special thanks to Jakub Nowak--who's work upon which this API is based.)
 
 
 Right now, you can clone the repo and run locally via...
@@ -22,10 +24,11 @@ You can access musician data in JSON format via...
 ...or...
 
     http://localhost:8080/musicians/<name>
+    
 
 ###SETTINGS
 
-Talatat's settings can be managed via environment variables and the development or production .ini files as suggested by the [official documentation] (http://docs.pylonsproject.org/projects/pyramid/en/latest/narr/environment.html#environment-chapter).  
+Talatat's settings may be managed via environment variables and the development or production .ini files as suggested by the [official Pyramid documentation] (http://docs.pylonsproject.org/projects/pyramid/en/latest/narr/environment.html#environment-chapter).  
 ------------------------------------------------------------------------
 
 ###LICENSE AND CONTACT INFO
