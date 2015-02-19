@@ -102,3 +102,58 @@ def get_musician(request):
 @view_config(route_name='musicians', renderer='json')
 def list_musicians(request):
     return MUSICIANS
+
+#http method to UPDATE one record
+@view_config(request_method='PATCH', context=Musician, renderer='json')
+def update_musician(context, request):
+    r = context.update(request.json_body, True)
+
+    return Response(
+        status='202 Accepted',
+        content_type='application/json; charset=UTF-8')
+
+#http method to GET one record
+@view_config(request_method='GET', context=Musician, renderer='json')
+def get_musician(context, request):
+    r = context.retrieve()
+
+    if r is None:
+        raise HTTPNotFound()
+    else:
+        return r
+
+#http method to DELETE one record
+@view_config(request_method='DELETE', context=Musician, renderer='json')
+def delete_musician(context, request):
+    context.delete()
+
+    return Response(
+        status='202 Accepted',
+        content_type='application/json; charset=UTF-8’)
+
+#http method to CREATE one record
+@view_config(request_method='PUT', context=Musicians, renderer='json')
+def create_musician(context, request):
+    r = context.create(request.json_body)
+
+    return Response(
+        status='201 Created',
+        content_type='application/json; charset=UTF-8')
+
+#http method to GET multiple records
+@view_config(request_method='GET', context=Musicians, renderer='json')
+def list_musicians(context, request):
+    return context.retrieve()
+
+#error handling
+@notfound_view_config()
+def notfound(request):
+    return Response(
+        body=json.dumps({'message': 'Not found!'}),
+        status='404 Not Found’,
+        content_type='application/json’)
+
+#home
+@view_config(renderer='json', context=Root)
+def home(context, request):
+    return {'info': 'Talatat API'}
