@@ -12,16 +12,26 @@ Name for small blocks of sandstone used to construct Akhenaten's Aten temples an
 
 Talatat is built on Pyramid (a Python framework)--and is easily installed on an AWS EC2 server (Linux Ubuntu 14.04 LTS) associated with an Elastic IP, or any cloud service provider you choose. The Concert Talent API will likely be refactored as an Eve app or as a Sandman app. But, if you're looking for an example of a lightweight API running on a relatively fast and agnostic Python framework, this might be a good place to start. (Special thanks to Jakub Nowak--who's work upon which this API is based.)
 
+###INSTALLATION AND USE
 
-Right now, you can clone the repo and run locally via...
+You'll need to set up a virtual environment on your local machine, as per 
+any proper Python project. Virtualenvwrapper is also recommended.
+
+Right now, assuming you already have Mongo installed, and assuming you've
+cloned the repo onto your local machine and have run setup.py as per
+Pyramid's offical docs, you can then load up the included fixture of JSON data into your local Mongo instance via running the following at the command line...
+
+    mongoimport --db musicians --collection musicians --type json --file fixture.json --jsonArray
+
+Then start up the app locally via...
 
     pserve --reload development.ini
     
-You can access musician data in JSON format via...
+As an example, you can GET a list of all musician data in JSON format via...
 
     http://localhost:8080/musicians
     
-...or...
+...or a specific musician's data via...
 
     http://localhost:8080/musicians/<mongo_id>
 

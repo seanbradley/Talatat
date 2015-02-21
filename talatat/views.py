@@ -1,4 +1,5 @@
 import json
+from pprint import pprint, pformat
 
 from pyramid.view import view_config, forbidden_view_config, notfound_view_config
 from pyramid.response import Response
@@ -22,12 +23,12 @@ def list_musicians(context, request):
 #GET a specific musician
 @view_config(request_method='GET', context=Musician, renderer='json')
 def get_musician(context, request):
-    r = context.retrieve()
+    musician = context.retrieve()
 
-    if r is None:
+    if musician is None:
         raise HTTPNotFound()
     else:
-        return r
+        return musician
 
 #UPDATE a musician
 @view_config(request_method='PUT', context=Musician, renderer='json')
@@ -61,7 +62,7 @@ def delete_musician(context, request):
 def notfound(request):
     
     return Response(
-        body=json.dumps({'message': 'The requested musician or musicians cannot be found!'}),
+        body=json.dumps({'message': 'The requested info cannot be found!'}),
         status='404 Not Found',
         content_type='application/json')
 
@@ -70,6 +71,6 @@ def notfound(request):
 def forbidden(request):
     
     return Response(
-        body=json.dumps({'message': 'You are not authorized to access this data.'}),
+        body=json.dumps({'message': 'You may not access this data.'}),
         status='401 Unauthorized',
         content_type='application/json')

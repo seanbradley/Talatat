@@ -19,13 +19,14 @@ class MongoJSONRenderer:
         if request is not None: 
             if not hasattr(request, 'response_content_type'): 
                 request.response_content_type = 'application/json' 
-        return json.dumps(value, default=json_util.default) 
+        return json.dumps(value, default=json_util.default)
     
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
     config = Configurator(settings=settings, root_factory=Root)
     config.add_renderer('json', MongoJSONRenderer)
+    #config.add_renderer('json', JSON(indent=4))
     #config.include('pyramid_chameleon')
     #config.add_static_view('static', 'static', cache_max_age=3600)
     

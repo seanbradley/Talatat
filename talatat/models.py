@@ -27,8 +27,8 @@ class Resource(dict):
     def add_child(self, ref, klass):
         resource = klass(ref=ref, parent=self)
         self[ref] = resource
-
-
+    
+    
 class MongoDocument(Resource):
 
     def __init__(self, ref, parent):
