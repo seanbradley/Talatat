@@ -1,4 +1,6 @@
 '''
+Some records in my Mongo collection; here just for my convenience...
+
 { "_id" : ObjectId("54e7da90a4b72e089aba6bfc"), "name" : "Beethoven" }
 { "_id" : ObjectId("54e7da95a4b72e089aba6bfd"), "name" : "Mozart" }
 '''
@@ -27,23 +29,6 @@ class Resource(dict):
         self[ref] = resource
 
 
-class MongoCollection(Resource):
-
-    @property
-    def collection(self):
-        root = find_root(self)
-        request = root.request
-        return request.db[self.collection_name]
-
-    def retrieve(self):
-        return [elem for elem in self.collection.find()]
-
-    def create(self, document):
-        object_id = self.collection.insert(document)
-        
-        return self.resource_name(ref=str(object_id), parent=self)
-
-
 class MongoDocument(Resource):
 
     def __init__(self, ref, parent):
@@ -65,6 +50,32 @@ class MongoDocument(Resource):
         self.collection.remove(self.spec)
 
 
+class MongoCollection(Resource):
+
+    @property
+    def collection(self):
+        root = find_root(self)
+        request = root.request
+        return request.db[self.collection_name]
+
+    def retrieve(self):
+        return [elem for elem in self.collection.find()]
+
+    def create(self, document):
+        object_id = self.collection.insert(document)
+        
+        return self.resource_name(ref=str(object_id), parent=self)
+
+
+class Root(Resource):
+
+    def __init__(self, request):
+        Resource.__init__(self, ref='', parent=None)
+
+        self.request = request
+        self.add_child('musicians', Musicians)
+        
+                
 class Musician(MongoDocument):
     
     def __init__(self, ref, parent):
@@ -78,12 +89,3 @@ class Musicians(MongoCollection):
 
     def __getitem__(self, ref):
         return Musician(ref, self)
-
-
-class Root(Resource):
-
-    def __init__(self, request):
-        Resource.__init__(self, ref='', parent=None)
-
-        self.request = request
-        self.add_child('musicians', Musicians)

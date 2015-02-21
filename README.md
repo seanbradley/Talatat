@@ -23,7 +23,7 @@ You can access musician data in JSON format via...
     
 ...or...
 
-    http://localhost:8080/musicians/<name>
+    http://localhost:8080/musicians/<mongo_id>
 
 
 

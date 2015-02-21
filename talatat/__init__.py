@@ -41,8 +41,6 @@ def main(global_config, **settings):
            db.authenticate(db_url.username, db_url.password)
        return db
         
-    config.add_route('index', '/')
-    config.add_route('musicians', '/musicians')
     config.add_request_method(add_db, 'db', reify=True)
-    config.scan()
+    config.scan('.views')
     return config.make_wsgi_app()
