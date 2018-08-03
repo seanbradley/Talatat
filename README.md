@@ -1,25 +1,23 @@
-#Talatat
+# Talatat
 
 An exploratory API for the ConcertTalent.com website, which is presently being refactored as one of two potential frontend clients: Stradivarius (a Django client) or Guarnerius (an Angular client). This API is for experimenting with API calls only and not intended for production use.
 
 
-###ABOUT TALATAT
+### ABOUT TALATAT
 
-Name for small blocks of sandstone used to construct Akhenaten's Aten temples and palaces in ancient Egypt. Due to their handy and uniform size, they expedited building things and structures that used them were often later dismantled and the blocks were reused in other constructions. The origin of the term talatat is supposedly originates with the Arabic word for "three", insomuch as the dimension of a talatat was three palm-widths.
+Named for small blocks of sandstone used to construct Akhenaten's Aten temples and palaces in ancient Egypt. Due to their handy and uniform size, talatats expedited building things and structures that used them. Those structures were often later dismantled and the blocks reused in other constructions. The origin of the term talatat supposedly originates with the Arabic word for "three", insomuch as the dimension of a talatat was three palm-widths.
 
 
-###TECHNOLOGY STACK
+### TECHNOLOGY STACK
 
 Talatat is built on Pyramid (a Python framework)--and is easily installed on an AWS EC2 server (Linux Ubuntu 14.04 LTS) associated with an Elastic IP, or any cloud service provider you choose. The Concert Talent API will likely be refactored as an Eve app or as a Sandman app. But, if you're looking for an example of a lightweight API running on a relatively fast and agnostic Python framework, this might be a good place to start. (Special thanks to Jakub Nowak--who's work upon which this API is based.)
 
-###INSTALLATION AND USE
+### INSTALLATION AND USE
 
 You'll need to set up a virtual environment on your local machine, as per 
 any proper Python project. Virtualenvwrapper is also recommended.
 
-Right now, assuming you already have Mongo installed, and assuming you've
-cloned the repo onto your local machine and have run setup.py as per
-Pyramid's offical docs, you can then load up the included fixture of JSON data into your local Mongo instance via running the following at the command line...
+Right now, assuming you already have Mongo installed (for Ubuntu, see this: http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/ ), and assuming you've cloned the repo onto your local machine and have run setup.py as per Pyramid's offical docs, you can then load up the included fixture of JSON data into your local Mongo instance via running the following at the command line...
 
     mongoimport --db musicians --collection musicians --type json --file fixture.json --jsonArray
 
@@ -37,13 +35,13 @@ As an example, you can GET a list of all musician data in JSON format via...
 
 
 
-###SETTINGS
+### SETTINGS
 
 Talatat's settings may be managed via environment variables and the development or production .ini files as suggested by the official Pyramid documentation.
  
 ------------------------------------------------------------------------
 
-###LICENSE AND CONTACT INFO
+### LICENSE AND CONTACT INFO
 
 Copyright © 2015 by BlogBlimp.
 
